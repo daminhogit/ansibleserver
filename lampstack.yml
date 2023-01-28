@@ -2,7 +2,8 @@
 
 - name: install apache & php & mysql
   hosts: testservers
-  become: yes
+  become: true
+  become_user: root
   gather_facts: true
   tasks:
     - name: "Install apache2"
