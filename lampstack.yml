@@ -3,8 +3,7 @@
 - name: install apache & php & mysql
   hosts: testservers
   become: true
-  gather_facts: false
-
+  gather_facts: true
   tasks:
     - name: "Install apache2"
       package: name=apache2 state=present
