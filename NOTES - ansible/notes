@@ -1,0 +1,68 @@
+ansible: Application deployment
+         Configuration management 
+         Security & Compliance 
+         Orchestration
+         Provisioning
+
+Application deployment: APP ---> Git -----> Ansible ----> Jenkins (optional) ---Servers (i.e. test server or prod server)
+                        APP ---> Git -----> jenkins ----> Servers (i.e. test server or prod server)
+
+Configuration management:
+
+Security & Compliance: (Define security wwith playbooks, writes ansible roles to apply DISA STIG, works with existing SSH 
+and WinRM protocols, Compatible with different tools for security verification)
+
+Orchestration: orchestrate the order of process and required installations
+
+ANSIBLE IS A PUSH ARCHITECTURE, Puppet and Chef are PULL
+
+
+Installing Ansible (first option?)
+#!/bin/bash (as a script) - check chuck youtube (you need to learn ansible right now!!)
+$ yum update -y
+$ yum install epel-release -y
+$ yum install ansible -y
+
+
+
+
+Installing Ansible: (second option?)
+  $ sudo apt-get update
+  $ sudo apt-get install software-properties-common
+  $ sudo apt-add-repository ppa:ansible/ansible
+  $ sudo apt-get update
+  $ sudo apt-get install ansible
+
+To see the version of ansible installed
+  $ ansible --version
+
+  Host inventory:
+    [webservers] server1
+    [application] server1 server2
+  default path: /etc/ansible/hosts
+  on terminal can be access using: sudo nano /etc/ansible/hosts
+
+
+  YAML file starts with ... and ends with ...:
+    ...
+    james:
+      name: james john
+      rollNo: 34
+      div: B
+      sex: male
+    ...
+
+
+    And can be rewritten:
+      james: {name: james john, rollNo: 34, div: B, sex: male}
+
+
+      for list
+  countries:
+    - America
+    - China
+    - Canada
+    - Iceland
+
+      can be rwritten
+  countries: {'America', 'China', 'Canada', 'Iceland'}
