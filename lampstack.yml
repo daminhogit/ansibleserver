@@ -3,8 +3,7 @@
 - name: install apache & php & mysql
   hosts: testservers
   become: true
-  become_user: centos
-  gather_facts: true
+  gather_facts: false
   tasks:
     - name: "Install apache2"
       package: name=apache2 state=present
