@@ -1,22 +1,56 @@
----
+#---
+#
+#- name: install apache & php & mysql
+#  hosts: testservers
+#  become: true
+#  become_user: centos
+#  gather_facts: true
+#  tasks:
+#    - name: "Install apache2"
+#      package: name=apache2 state=present
+#    - name: "Install apache2-php5"
+#      package: name=libapache2-mod-php state=present
+#    - name: "Install php-cli"
+#      package: name=php-cli state=present
+#    - name: "Install php-mcrypt"
+#      package: name=php-mcrypt state=present
+#    - name: "Install php-gd"
+#      package: name=php-gd state=present
+#    - name: "Install php-mysql"
+#      package: name=php-mysql state=present
+#    - name: "Install mysqlserver"
+#      package: name=mysql-server state=present
 
-- name: install apache & php & mysql
+
+---
+- name: Install necessary software for website deployment
   hosts: testservers
   become: yes
-  become_user: root
-  gather_facts: true
   tasks:
-    - name: "Install apache2"
-      package: name=apache2 state=present
-    - name: "Install apache2-php5"
-      package: name=libapache2-mod-php state=present
-    - name: "Install php-cli"
-      package: name=php-cli state=present
-    - name: "Install php-mcrypt"
-      package: name=php-mcrypt state=present
-    - name: "Install php-gd"
-      package: name=php-gd state=present
-    - name: "Install php-mysql"
-      package: name=php-mysql state=present
-    - name: "Install mysqlserver"
-      package: name=mysql-server state=present
+    - name: Update package manager
+      yum:
+        name: '*'
+        state: latest
+    - name: Install Apache web server
+      yum:
+        name: httpd
+    - name: Install PHP
+      yum:
+        name: php
+    - name: Install PHP module for Apache
+      yum:
+        name: php-mysql
+    - name: Install MySQL server
+      yum:
+        name: mariadb-server
+    - name: Install PHP MySQL module
+      yum:
+        name: php-mysql
+    - name: Start Apache
+      service:
+        name: httpd
+        state: started
+    - name: Enable Apache to start on boot
+      service:
+        name: httpd
+        enabled: true

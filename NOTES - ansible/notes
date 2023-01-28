@@ -23,7 +23,9 @@ $ yum update -y
 $ yum install epel-release -y
 $ yum install ansible -y
 
-
+yum - centOS
+apt-get - ubuntu
+These should be noted in playbooks also
 
 
 Installing Ansible: (second option?)
@@ -66,3 +68,14 @@ To see the version of ansible installed
 
       can be rwritten
   countries: {'America', 'China', 'Canada', 'Iceland'}
+
+
+In Ansible, the '*' character is used as a wildcard and can have different meanings depending on the context.
+
+In a playbook, if * is used in the hosts: field, it means that the playbook will be executed on all hosts defined in the inventory file. For example, if your inventory file defines the group webservers with several hosts, then hosts: webservers will target only those hosts, whereas hosts: * will target all hosts defined in the inventory file regardless of the group they belong to.
+
+In a task, if * is used in a module's parameter, it means that the module will apply to all items in a list. For example, in a file module, state: directory will create a directory, whereas state: file will create a file. If you want to create both, use state: directory, file
+
+In a task, if * is used in a loop, it means that the task will be executed on all items in the list. For example, in a yum task, name: '*' will update all packages, whereas name: 'httpd' will only update the httpd package.
+
+It's important to note that the wildcard can have different meanings depending on the context, so make sure you understand how it is being used in your playbook.
