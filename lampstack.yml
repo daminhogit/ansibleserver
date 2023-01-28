@@ -21,7 +21,6 @@
 #    - name: "Install mysqlserver"
 #      package: name=mysql-server state=present
 
-
 ---
 - name: Install necessary software for website deployment
   hosts: testservers
