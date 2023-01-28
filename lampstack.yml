@@ -4,6 +4,7 @@
   hosts: testservers
   become: true
   gather_facts: false
+
   tasks:
     - name: "Install apache2"
       package: name=apache2 state=present
