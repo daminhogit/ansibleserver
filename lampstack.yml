@@ -26,7 +26,6 @@
 - name: Install necessary software for website deployment
   hosts: testservers
   become: yes
-
   tasks:
     - name: Update package manager
       yum:
