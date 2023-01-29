@@ -9,4 +9,3 @@
     - name: "copy file"
       src: /Users/eadesany/github-repos/kaikki/Kaikki/kaikki_admin-web/kaikki_admin-main/public/index.html
       dest: /var/www/html/index.html
-      remote_src: yes
