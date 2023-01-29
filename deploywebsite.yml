@@ -1,11 +1,14 @@
 ---
-
-- name: copy web files to nodeserver
+- name: Download App Content & Extracting File to nodeserver
   hosts: testservers
-  become: true
-  become_user: centos
-  gather_facts: true
-  tasks:
-    - name: copy file
-      src: /Users/eadesany/github-repos/kaikki/Kaikki/kaikki_admin-web/kaikki_admin-main/public/index.html
-      dest: /var/www/html/index.html
+  ansible.builtin.unarchive:
+    src: https://github.com/raghudevopsb69/{{COMPONENT}}/archive/refs/heads/main.zip
+    dest: "/tmp"
+    remote_src: yes
+
+- name: Copy Extracted App Content to App location
+  hosts: testservers
+  ansible.builtin.copy:
+    src: /tmp/{{COMPONENT}}-main/
+    dest: "{{ APP_LOC }}/"
+    remote_src: yes
