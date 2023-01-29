@@ -7,5 +7,6 @@
   gather_facts: true
   tasks:
     - name: "copy file"
-      copy: src=/Users/eadesany/github-repos/kaikki/Kaikki/kaikki_admin-web/kaikki_admin-main/public/index.html dest=/var/www/html/index.html
+      src: /Users/eadesany/github-repos/kaikki/Kaikki/kaikki_admin-web/kaikki_admin-main/public/index.html
+      dest: /var/www/html/index.html
       remote_src: yes
