@@ -22,7 +22,7 @@
 #      package: name=mysql-server state=present
 
 ---
-- name: Install necessary software for website deployment
+- name: Install softwares for website
   hosts: testservers
   become: yes
   tasks:
@@ -38,7 +38,7 @@
         name: php
     - name: Install PHP module for Apache
       yum:
-        name: php-mysql
+        name: php-mysqlnd
     - name: Install MySQL server
       yum:
         name: mariadb-server

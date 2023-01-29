@@ -28,7 +28,7 @@ apt-get - ubuntu
 These should be noted in playbooks also
 
 
-Installing Ansible: (second option?)
+Installing Ansible: (second option? - ubuntu)
   $ sudo apt-get update
   $ sudo apt-get install software-properties-common
   $ sudo apt-add-repository ppa:ansible/ansible
@@ -68,6 +68,13 @@ To see the version of ansible installed
 
       can be rwritten
   countries: {'America', 'China', 'Canada', 'Iceland'}
+
+
+
+Assessing the host file (where to name servers and group according to IP add or Dns)
+$ cd /etc/ansible
+$ sudo vi hosts
+
 
 
 In Ansible, the '*' character is used as a wildcard and can have different meanings depending on the context.
