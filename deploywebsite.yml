@@ -3,11 +3,11 @@
   hosts: testservers
   gather_facts: false
   tasks:
-    - name: "Download and unarchive"
+    - name: Download and unarchive
       src: https://github.com/raghudevopsb69/{{COMPONENT}}/archive/refs/heads/main.zip
       dest: "/tmp"
       remote_src: yes
-    - name: "copy file"
+    - name: copy file
       src: /tmp/{{COMPONENT}}-main/
       dest: "{{ APP_LOC }}/"
       remote_src: yes
