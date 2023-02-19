@@ -86,3 +86,34 @@ In a task, if * is used in a module's parameter, it means that the module will a
 In a task, if * is used in a loop, it means that the task will be executed on all items in the list. For example, in a yum task, name: '*' will update all packages, whereas name: 'httpd' will only update the httpd package.
 
 It's important to note that the wildcard can have different meanings depending on the context, so make sure you understand how it is being used in your playbook.
+
+
+##Here the variables can be assessed by all the tasks in the playbook:
+- name: Demo on vars play level
+  hosts: localhost
+  vars:
+    URL: play.example.com
+  tasks:
+    - name: Print URL
+      ansible.builtin.debug:
+        msg: URL = {{ URL }}
+
+##Here only the play in the tasks can asses the variables
+- name: Demo on vars on task level
+  hosts: localhost
+  tasks:
+    - name: Print URL
+      ansible.builtin.debug:
+        msg: URL {{ URL }}
+      vars:
+        URL: task.example.com
+
+##Here to assess variables from a file to a playbook
+- name: Demo on vars from file on play level
+  hosts: localhost
+  vars_files:
+    - sample-vars.yml
+  tasks:
+    - name: Print URL
+      ansible.builtin.debug:
+        msg: URL {{ URL }}
